@@ -1,12 +1,11 @@
 /**
- * Project J.A.R.V.I.S. 2.0 - Interactive HUD & AI Assistant Engine
+ * Project J.A.R.V.I.S. 2.0 - Multilingual Web Voice & AI Assistant Engine
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initArcReactorCanvas();
   initConsoleEngine();
   initTelemetryLoop();
-  initCopyButtons();
   initAudioSynthesizer();
 });
 
@@ -18,7 +17,6 @@ function initArcReactorCanvas() {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   
-  // Set internal buffer resolution
   canvas.width = 400;
   canvas.height = 400;
   
@@ -106,7 +104,7 @@ function initArcReactorCanvas() {
 }
 
 /* ----------------------------------------------------
- * 2. Interactive J.A.R.V.I.S. AI Demo Console
+ * 2. Multilingual Voice & AI Assistant Console Engine
  * ---------------------------------------------------- */
 let audioFxEnabled = true;
 
@@ -114,6 +112,8 @@ function initConsoleEngine() {
   const consoleBody = document.getElementById('consoleBody');
   const consoleInput = document.getElementById('consoleInput');
   const sendBtn = document.getElementById('sendBtn');
+  const micBtn = document.getElementById('micBtn');
+  const micLabel = document.getElementById('micLabel');
   const chips = document.querySelectorAll('.chip');
   const audioToggle = document.getElementById('audioToggle');
 
@@ -123,27 +123,31 @@ function initConsoleEngine() {
     audioToggle.addEventListener('click', () => {
       audioFxEnabled = !audioFxEnabled;
       audioToggle.classList.toggle('active', audioFxEnabled);
-      audioToggle.textContent = audioFxEnabled ? 'AUDIO: ON' : 'AUDIO: OFF';
+      audioToggle.textContent = audioFxEnabled ? 'VOICE SPEECH: ON' : 'VOICE SPEECH: OFF';
       playBeep(800, 0.05);
     });
   }
 
   const responses = {
-    "status": {
-      text: "All core J.A.R.V.I.S. 2.0 systems are fully operational. LangGraph brain node is active with Ollama llama3.2:3b local LLM fallback.",
-      tool: "[GraphRAG Memory]: Retrieved system topology (35 nodes, 0 errors)"
+    "namaste": {
+      text: "नमस्ते सर! मैं जे.आर.वी.आई.एस. 2.0 हूँ। सभी कोर सिस्टम्स (LangGraph, GraphRAG, Multilingual Audio) पूरी तरह सक्रिय हैं।",
+      tool: "[GraphRAG Memory]: Multilingual Indian Language Context active"
+    },
+    "diagnostics": {
+      text: "System diagnostics summary: CPU Load is 13.8%, Memory usage is optimal, and all LangGraph agent state nodes are online.",
+      tool: "[System Diagnostics]: Executed get_system_diagnostics()"
     },
     "memory": {
-      text: "GraphRAG knowledge graph contains 148 entity relations. Active workspace context indexed for real-time memory retrieval.",
-      tool: "[GraphRAG Memory]: Executed query_context('user intent history')"
+      text: "GraphRAG knowledge graph contains 152 entity relations with full context indexing across sessions.",
+      tool: "[GraphRAG Memory]: Executed query_context('user memory query')"
     },
     "vision": {
-      text: "Multimodal vision grounding engine ready. Screen analysis module initialized for screen coordinate grounding and UI element detection.",
+      text: "Multimodal vision grounding engine ready. Capturing current desktop window frame for spatial UI analysis.",
       tool: "[Vision Engine]: ScreenGrounder captured active frame (1920x1080 resolution)"
     },
     "audio": {
-      text: "Audio pipeline configured at 16,000Hz sampling rate with Whisper STT transcription and pyttsx3/gTTS voice output.",
-      tool: "[Audio Pipeline]: Sounddevice buffer verified (chunk size: 1280)"
+      text: "Multilingual Voice Audio Pipeline running. Supporting Hindi, Hinglish, and English STT and TTS speech synthesis.",
+      tool: "[Audio Pipeline]: Multilingual Neural Voice IO operational"
     }
   };
 
@@ -176,9 +180,10 @@ function initConsoleEngine() {
 
     // Simulate AI thinking and response
     setTimeout(() => {
-      let matchedKey = "status";
+      let matchedKey = "diagnostics";
       const qLower = query.toLowerCase();
-      if (qLower.includes("memory") || qLower.includes("graph")) matchedKey = "memory";
+      if (qLower.includes("namaste") || qLower.includes("नमस्ते") || qLower.includes("status")) matchedKey = "namaste";
+      else if (qLower.includes("memory") || qLower.includes("graph")) matchedKey = "memory";
       else if (qLower.includes("vision") || qLower.includes("screen") || qLower.includes("see")) matchedKey = "vision";
       else if (qLower.includes("audio") || qLower.includes("voice") || qLower.includes("sound")) matchedKey = "audio";
 
@@ -198,23 +203,99 @@ function initConsoleEngine() {
       handleSend();
     });
   });
+
+  /* ----------------------------------------------------
+   * Web Speech Recognition (Browser Voice Input)
+   * ---------------------------------------------------- */
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (SpeechRecognition && micBtn) {
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = true;
+    recognition.lang = 'hi-IN'; // Default to Hindi / Multilingual
+
+    let isRecording = false;
+
+    micBtn.addEventListener('click', () => {
+      if (isRecording) {
+        recognition.stop();
+      } else {
+        try {
+          recognition.start();
+        } catch (e) {
+          console.warn("Speech recognition already running");
+        }
+      }
+    });
+
+    recognition.onstart = () => {
+      isRecording = true;
+      micBtn.classList.add('recording');
+      if (micLabel) micLabel.textContent = 'LISTENING...';
+      playBeep(900, 0.04);
+    };
+
+    recognition.onresult = (event) => {
+      const transcript = Array.from(event.results)
+        .map(result => result[0])
+        .map(result => result.transcript)
+        .join('');
+
+      consoleInput.value = transcript;
+    };
+
+    recognition.onerror = (event) => {
+      console.warn('Speech recognition error:', event.error);
+      stopRecordingUI();
+    };
+
+    recognition.onend = () => {
+      stopRecordingUI();
+      if (consoleInput.value.trim()) {
+        handleSend();
+      }
+    };
+
+    function stopRecordingUI() {
+      isRecording = false;
+      micBtn.classList.remove('recording');
+      if (micLabel) micLabel.textContent = 'SPEAK';
+    }
+  } else if (micBtn) {
+    micBtn.addEventListener('click', () => {
+      alert("Browser speech recognition is not supported in this browser. Please type your query in the terminal input.");
+    });
+  }
 }
 
 /* ----------------------------------------------------
- * 3. Speech Synthesis Audio Output
+ * 3. Multilingual Speech Synthesis Audio Output
  * ---------------------------------------------------- */
 function speakText(text) {
   if (!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel(); // Stop ongoing speech
+  window.speechSynthesis.cancel();
   
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.rate = 1.05;
-  utterance.pitch = 0.95;
+  utterance.rate = 1.0;
+  utterance.pitch = 1.0;
   
-  // Try finding a clean English voice
+  // Check for Devanagari Hindi characters
+  const isHindi = /[\u0900-\u097F]/.test(text);
+  if (isHindi) {
+    utterance.lang = 'hi-IN';
+  } else {
+    utterance.lang = 'en-US';
+  }
+  
   const voices = window.speechSynthesis.getVoices();
-  const jarvisVoice = voices.find(v => v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Daniel') || v.name.includes('UK English'));
-  if (jarvisVoice) utterance.voice = jarvisVoice;
+  let selectedVoice = null;
+  if (isHindi) {
+    selectedVoice = voices.find(v => v.lang.includes('hi') || v.name.includes('Hindi') || v.name.includes('Google हिन्दी'));
+  }
+  if (!selectedVoice) {
+    selectedVoice = voices.find(v => v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Daniel') || v.name.includes('UK English'));
+  }
+  if (selectedVoice) utterance.voice = selectedVoice;
   
   window.speechSynthesis.speak(utterance);
 }
@@ -225,7 +306,7 @@ function speakText(text) {
 let audioCtx = null;
 
 function initAudioSynthesizer() {
-  const buttons = document.querySelectorAll('button, .chip, .nav-link, .btn-github');
+  const buttons = document.querySelectorAll('button, .chip, .nav-link');
   buttons.forEach(btn => {
     btn.addEventListener('mouseenter', () => {
       if (audioFxEnabled) playBeep(1200, 0.015);
@@ -256,7 +337,7 @@ function playBeep(freq, duration) {
     osc.start();
     osc.stop(audioCtx.currentTime + duration);
   } catch (e) {
-    // Ignore audio context autoplay restrictions
+    // Ignore audio context restrictions
   }
 }
 
@@ -271,41 +352,12 @@ function initTelemetryLoop() {
   if (!latencyEl) return;
 
   setInterval(() => {
-    // Subtle realistic variations
-    const latency = (18 + Math.random() * 6).toFixed(1);
-    const nodes = 148 + Math.floor(Math.random() * 3);
-    const cpu = (12 + Math.random() * 8).toFixed(1);
+    const latency = (18 + Math.random() * 5).toFixed(1);
+    const nodes = 152 + Math.floor(Math.random() * 3);
+    const cpu = (12 + Math.random() * 6).toFixed(1);
 
     latencyEl.textContent = `${latency}ms`;
     memoryNodesEl.textContent = nodes;
     cpuLoadEl.textContent = `${cpu}%`;
   }, 2500);
-}
-
-/* ----------------------------------------------------
- * 6. Code Snippet Copy-to-Clipboard
- * ---------------------------------------------------- */
-function initCopyButtons() {
-  const copyBtns = document.querySelectorAll('.copy-btn');
-  copyBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const codeBox = btn.nextElementSibling;
-      if (!codeBox) return;
-      
-      const codeText = codeBox.textContent.trim();
-      navigator.clipboard.writeText(codeText).then(() => {
-        const originalText = btn.textContent;
-        btn.textContent = 'COPIED!';
-        btn.style.background = 'var(--cyan-primary)';
-        btn.style.color = '#000';
-        playBeep(900, 0.05);
-
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.style.background = '';
-          btn.style.color = '';
-        }, 2000);
-      });
-    });
-  });
 }

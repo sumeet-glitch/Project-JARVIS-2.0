@@ -533,6 +533,35 @@ body::after {
   box-shadow: var(--neon-glow);
 }
 
+.btn-mic {
+  background: rgba(127, 0, 255, 0.15);
+  border: 1px solid var(--purple-accent);
+  color: #fff;
+  border-radius: 6px;
+  padding: 0 1.2rem;
+  font-family: var(--font-hud);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-mic:hover {
+  background: rgba(127, 0, 255, 0.3);
+  box-shadow: var(--purple-glow);
+}
+
+.btn-mic.recording {
+  background: #ff5f56;
+  border-color: #ff3b30;
+  box-shadow: 0 0 15px #ff5f56;
+  animation: pulse-glow 1s infinite alternate;
+}
+
+
 /* Preset Prompt Buttons */
 .prompt-chips {
   display: flex;

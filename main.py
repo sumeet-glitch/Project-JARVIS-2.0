@@ -23,15 +23,18 @@ def main():
         try:
             user_input = input("\n[USER (Type or press Enter for Voice)]: ").strip()
             if not user_input:
-                print("[LISTENING] Recording 4 seconds of audio...")
+                print("[LISTENING] Recording 4 seconds of audio... Speak now!")
                 with sd.InputStream(samplerate=config.SAMPLE_RATE, channels=1, dtype="int16", 
                                     blocksize=config.AUDIO_CHUNK_SIZE, callback=audio_callback):
                     recorded = []
                     for _ in range(int(config.SAMPLE_RATE / config.AUDIO_CHUNK_SIZE * 4)):
                         recorded.append(audio_queue.get())
                     raw_audio = np.concatenate(recorded, axis=0).flatten()
-                    user_input = audio_io.transcribe(raw_audio)
+                    # Convert int16 PCM audio to float32 range [-1.0, 1.0] for Whisper
+                    float_audio = raw_audio.astype(np.float32) / 32768.0
+                    user_input = audio_io.transcribe(float_audio)
                     print(f"[TRANSCRIBED]: {user_input}")
+
 
             if user_input.lower() in ["exit", "quit", "shutdown"]:
                 audio_io.speak("Shutting down core systems. Have a productive day, sir.")

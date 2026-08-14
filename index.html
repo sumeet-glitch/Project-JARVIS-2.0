@@ -6,15 +6,14 @@
   <title>Project J.A.R.V.I.S. 2.0 - Next-Gen Autonomous AI Assistant System</title>
   
   <!-- SEO & Social Meta Tags -->
-  <meta name="description" content="Project J.A.R.V.I.S. 2.0 - Next-Generation Autonomous AI Assistant powered by LangGraph, GraphRAG Memory, Whisper Audio Pipeline, and Multimodal Vision Grounding.">
-  <meta name="keywords" content="JARVIS, AI Assistant, LangGraph, GraphRAG, Artificial Intelligence, Ollama, OpenAI, Audio Pipeline, Python AI">
+  <meta name="description" content="Project J.A.R.V.I.S. 2.0 - Next-Generation Autonomous AI Assistant powered by LangGraph, GraphRAG Memory, Multilingual Speech STT/TTS, and Multimodal Vision Grounding.">
+  <meta name="keywords" content="JARVIS, AI Assistant, Multilingual AI, Hindi AI, LangGraph, GraphRAG, Artificial Intelligence, Ollama, Audio Pipeline">
   <meta name="author" content="sumeet-glitch">
 
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://sumeet-glitch.github.io/Project-JARVIS-2.0/">
   <meta property="og:title" content="Project J.A.R.V.I.S. 2.0 - Next-Gen Autonomous AI Assistant">
-  <meta property="og:description" content="State-of-the-art autonomous AI assistant system with LangGraph state machines, knowledge graph memory, and voice-vision pipeline.">
+  <meta property="og:description" content="State-of-the-art autonomous AI assistant system with LangGraph state machines, knowledge graph memory, and multilingual voice-vision pipeline.">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
@@ -30,10 +29,9 @@
 
     <ul class="nav-links">
       <li><a href="#hero" class="nav-link active">Home</a></li>
-      <li><a href="#demo" class="nav-link">Interactive Demo</a></li>
+      <li><a href="#demo" class="nav-link">Voice Assistant Demo</a></li>
       <li><a href="#architecture" class="nav-link">Architecture</a></li>
       <li><a href="#telemetry" class="nav-link">Telemetry</a></li>
-      <li><a href="#quickstart" class="nav-link">Quickstart</a></li>
     </ul>
 
     <div style="display: flex; align-items: center; gap: 1rem;">
@@ -41,10 +39,6 @@
         <div class="status-dot"></div>
         SYSTEM ONLINE
       </div>
-      <a href="https://github.com/sumeet-glitch/Project-JARVIS-2.0" target="_blank" rel="noopener noreferrer" class="btn-github">
-        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
     </div>
   </nav>
 
@@ -54,19 +48,19 @@
       <div class="hero-content">
         <div class="hero-tag">
           <span style="display:inline-block; width:6px; height:6px; background:var(--cyan-primary); border-radius:50%;"></span>
-          AUTONOMOUS MULTI-AGENT FRAMEWORK
+          MULTILINGUAL VOICE & VISION AI FRAMEWORK
         </div>
         <h1 class="hero-title">
           PROJECT J.A.R.V.I.S. 2.0
           <span>INTELLIGENT AI SYSTEM</span>
         </h1>
         <p class="hero-desc">
-          An advanced, open-source autonomous voice & vision AI assistant engineered with <strong>LangGraph</strong> stateful decision graphs, <strong>GraphRAG</strong> knowledge graph memory, local LLMs via <strong>Ollama</strong>, and low-latency audio processing.
+          An advanced autonomous voice & vision AI assistant engineered with <strong>LangGraph</strong> stateful decision graphs, <strong>GraphRAG</strong> knowledge graph memory, <strong>Multilingual Voice STT/TTS (Hindi, Hinglish & English)</strong>, and local LLMs via <strong>Ollama</strong>.
         </p>
         <div class="hero-btns">
           <a href="#demo" class="btn-primary">
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            INTERACTIVE DEMO
+            LAUNCH VOICE DEMO
           </a>
           <a href="#architecture" class="btn-secondary">
             EXPLORE ARCHITECTURE
@@ -84,11 +78,11 @@
       </div>
     </section>
 
-    <!-- Interactive AI Assistant Demo Console Section -->
+    <!-- Interactive AI Assistant Voice & Text Console Section -->
     <section class="section" id="demo">
       <div class="section-header">
-        <div class="section-subtitle">LIVE DEMONSTRATION</div>
-        <h2 class="section-title">Interactive AI Console</h2>
+        <div class="section-subtitle">LIVE VOICE & TEXT INTERACTION</div>
+        <h2 class="section-title">Multilingual Voice Console</h2>
       </div>
 
       <div class="console-card">
@@ -98,9 +92,9 @@
             <div class="dot dot-yellow"></div>
             <div class="dot dot-green"></div>
           </div>
-          <div class="console-title-text">J.A.R.V.I.S. 2.0 // AGENT BRAIN TERMINAL</div>
+          <div class="console-title-text">J.A.R.V.I.S. 2.0 // VOICE & AGENT BRAIN TERMINAL</div>
           <div class="console-controls">
-            <button class="audio-toggle-btn active" id="audioToggle">AUDIO: ON</button>
+            <button class="audio-toggle-btn active" id="audioToggle">VOICE SPEECH: ON</button>
           </div>
         </div>
 
@@ -109,24 +103,27 @@
           <div class="chat-msg jarvis">
             <div class="msg-author">J.A.R.V.I.S. 2.0</div>
             <div class="msg-bubble">
-              Project J.A.R.V.I.S. 2.0 systems fully operational, sir. How may I assist you today?
+              Project J.A.R.V.I.S. 2.0 systems fully operational, sir. Aap Hindi, Hinglish, ya English mein baat kar sakte hain. How may I assist you today?
             </div>
-            <div class="tool-trace">⚡ [System Core]: AudioPipeline initialized | LangGraph Brain online</div>
+            <div class="tool-trace">⚡ [System Core]: Multilingual Neural Audio Pipeline online | LangGraph Brain active</div>
           </div>
         </div>
 
         <div class="console-footer">
-          <input type="text" id="consoleInput" class="console-input" placeholder="Type a prompt or choose a preset below..." autocomplete="off">
+          <button id="micBtn" class="btn-mic" title="Click to speak via Microphone">
+            🎙️ <span id="micLabel">SPEAK</span>
+          </button>
+          <input type="text" id="consoleInput" class="console-input" placeholder="Speak or type a command in Hindi, Hinglish, or English..." autocomplete="off">
           <button id="sendBtn" class="btn-send">TRANSMIT</button>
         </div>
       </div>
 
       <!-- Preset Prompt Chips -->
       <div class="prompt-chips">
-        <button class="chip">Check core system status</button>
+        <button class="chip">नमस्ते, सिस्टम स्टेटस बताओ</button>
+        <button class="chip">Hey Jarvis, system diagnostics report dikhao</button>
         <button class="chip">Query GraphRAG memory context</button>
         <button class="chip">Initiate vision screen scan</button>
-        <button class="chip">Inspect audio pipeline settings</button>
       </div>
     </section>
 
@@ -156,12 +153,12 @@
           </p>
         </div>
 
-        <!-- Feature 3: Audio Pipeline -->
+        <!-- Feature 3: Multilingual Voice IO -->
         <div class="feature-card">
           <div class="feature-icon">🎙️</div>
-          <h3 class="feature-title">Low-Latency Audio</h3>
+          <h3 class="feature-title">Multilingual Voice IO</h3>
           <p class="feature-desc">
-            High-performance voice IO built with <code style="color:var(--cyan-primary)">sounddevice</code> and Whisper STT for 16kHz audio capture and instant speech synthesis.
+            High-performance voice IO supporting <strong>Hindi</strong>, <strong>Hinglish</strong>, and <strong>English</strong> with Whisper STT and gTTS neural speech synthesis.
           </p>
         </div>
 
@@ -177,9 +174,9 @@
         <!-- Feature 5: Flexible LLM Core -->
         <div class="feature-card">
           <div class="feature-icon">⚡</div>
-          <h3 class="feature-title">Local & Cloud LLMs</h3>
+          <h3 class="feature-title">Local LLM Core</h3>
           <p class="feature-desc">
-            Seamless toggle between local privacy-first models (<code style="color:var(--cyan-primary)">llama3.2:3b</code> via Ollama) and cloud engines (<code style="color:var(--blue-secondary)">gpt-4o-mini</code>).
+            Powered by local privacy-first multilingual models (<code style="color:var(--cyan-primary)">qwen2.5:3b</code> / <code style="color:var(--blue-secondary)">llama3.2:3b</code> via Ollama).
           </p>
         </div>
 
@@ -203,17 +200,17 @@
 
       <div class="telemetry-grid">
         <div class="metric-card">
-          <div class="metric-val" id="metricLatency">19.4ms</div>
+          <div class="metric-val" id="metricLatency">18.6ms</div>
           <div class="metric-lbl">Inference Latency</div>
         </div>
 
         <div class="metric-card">
-          <div class="metric-val" id="metricMemoryNodes">148</div>
+          <div class="metric-val" id="metricMemoryNodes">152</div>
           <div class="metric-lbl">GraphRAG Memory Nodes</div>
         </div>
 
         <div class="metric-card">
-          <div class="metric-val" id="metricCpuLoad">14.2%</div>
+          <div class="metric-val" id="metricCpuLoad">13.8%</div>
           <div class="metric-lbl">CPU Thread Utilization</div>
         </div>
 
@@ -223,49 +220,12 @@
         </div>
       </div>
     </section>
-
-    <!-- Quickstart & Installation Section -->
-    <section class="section" id="quickstart">
-      <div class="section-header">
-        <div class="section-subtitle">GET STARTED</div>
-        <h2 class="section-title">Quickstart Installation</h2>
-      </div>
-
-      <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem;">
-        
-        <div>
-          <h4 style="font-family:var(--font-hud); color:var(--cyan-primary); margin-bottom:0.4rem;">1. Clone Repository</h4>
-          <div class="code-box">
-            <button class="copy-btn">COPY</button>
-            <code>git clone https://github.com/sumeet-glitch/Project-JARVIS-2.0.git && cd Project-JARVIS-2.0</code>
-          </div>
-        </div>
-
-        <div>
-          <h4 style="font-family:var(--font-hud); color:var(--cyan-primary); margin-bottom:0.4rem;">2. Install Dependencies</h4>
-          <div class="code-box">
-            <button class="copy-btn">COPY</button>
-            <code>pip install -r requirements.txt</code>
-          </div>
-        </div>
-
-        <div>
-          <h4 style="font-family:var(--font-hud); color:var(--cyan-primary); margin-bottom:0.4rem;">3. Launch Core Systems</h4>
-          <div class="code-box">
-            <button class="copy-btn">COPY</button>
-            <code>python main.py</code>
-          </div>
-        </div>
-
-      </div>
-    </section>
   </main>
 
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p><strong>Project J.A.R.V.I.S. 2.0</strong> &mdash; Autonomous AI System</p>
-      <p>Deployed via GitHub Pages | Repository: <a href="https://github.com/sumeet-glitch/Project-JARVIS-2.0" target="_blank" rel="noopener noreferrer" style="color:var(--cyan-primary); text-decoration:none;">sumeet-glitch/Project-JARVIS-2.0</a></p>
+      <p><strong>Project J.A.R.V.I.S. 2.0</strong> &mdash; Autonomous Multilingual AI System</p>
     </div>
   </footer>
 
